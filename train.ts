@@ -1,15 +1,12 @@
-const gTask = (arr: number[]): number => {
-    let high = arr[0];
-    let highestIndex = 0;
+// const positive = (arr: number[]): string => {
+//   return arr
+//     .filter(a => a >= 1)
+//     .join("");
+// };
+// positive([2, -3, 0, 4, 1]);
 
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > high) {
-            high = arr[i];
-            highestIndex = i;
-        };
-    };
-    return highestIndex;
-};
+const positive = (arr: number[]): string => {
+    return arr.filter(a => a >= 1).join('');
+}
 
-
-console.log(gTask([1,2,4,5,22,3,4,2,22]));
+console.log(positive([1, 45, 2, 6, -3, -3,-9]));
