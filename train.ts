@@ -1,12 +1,21 @@
-// const positive = (arr: number[]): string => {
-//   return arr
-//     .filter(a => a >= 1)
-//     .join("");
-// };
-// positive([2, -3, 0, 4, 1]);
+const mostFrequent = (arr: number[]): number | null => {
+    if (arr.length === 0) return null;
 
-const positive = (arr: number[]): string => {
-    return arr.filter(a => a >= 1).join('');
+    const freq: { [key: number]: number} = {};
+    let maxCount = 0;
+    let result = arr[0];
+
+    for (const num of arr) {
+        freq[num] = (freq[num] ?? 0) + 1;
+
+        if (freq[num] > maxCount) {
+            maxCount = freq[num];
+            result = num;
+        }
+    }
+
+ return result;
 }
 
-console.log(positive([1, 45, 2, 6, -3, -3,-9]));
+
+console.log(mostFrequent([1,2,4,5,43,3,3,3,4,4,4,6,6,6,6,6,6]));
