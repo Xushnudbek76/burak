@@ -28,4 +28,4 @@ class Errors extends Error {
     }
 }
 
-export default Error;
+export default Errors;
