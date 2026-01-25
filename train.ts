@@ -1,19 +1,13 @@
 
-const longestStr = (str : string ): string => {
-    let sp  = str.split(" ");
-    let long = '';
-    for (const e of sp) {
-        if (e.length > long.length) {
-            long = e;
-        }
+const countVowels = (str: string): number => {
+    let count = 0;
+    let vowels = 'aeiou';
+   let strs = str.toLowerCase()
+    for(let i = 0; i < strs.length; i++) {
+      if (vowels.includes(strs[i])) {
+        count++
+      }
     }
-    return long;
+    return count;
 }
-console.log(longestStr("Nimagap hello Uzbekistan"))
-// Project Standards:
-//     - Logging Standards
-//     - Naming Standards:
-//        - function, method, variable => CAMEL ---goHome
-//        - class => PASCAL                     ---MemberService
-//        - folder => KEBAB                     ---router-admin
-//        - css => SNAKE                        ---button_style
+console.log(countVowels('Nike and Adidas'));
