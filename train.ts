@@ -1,13 +1,6 @@
-
-const countVowels = (str: string): number => {
-    let count = 0;
-    let vowels = 'aeiou';
-   let strs = str.toLowerCase()
-    for(let i = 0; i < strs.length; i++) {
-      if (vowels.includes(strs[i])) {
-        count++
-      }
-    }
-    return count;
+const reverse = (str: string): string => {
+  return str.split(' ').map( e => e.split('').reverse().join('')).join(" ");
 }
-console.log(countVowels('Nike and Adidas'));
+
+
+console.log(reverse('Hello MIT'))
