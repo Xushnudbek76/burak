@@ -1,8 +1,10 @@
 import {Request, Response} from 'express';
 import { T } from "../libs/types/common";
 import  MemberService  from "./../models/Memeber.service";
-import { LoginInput, MemberInput } from '../libs/types/members';
+import { AdminRequest, LoginInput, MemberInput } from '../libs/types/members';
 import { MemberType } from '../libs/enums/member.enum';
+import { Message } from '../libs/Errors';
+import Errors from '../libs/Errors';
 const restaurantController: T = {};
 restaurantController.goHome =  (req: Request, res: Response) => {
     try {
@@ -10,7 +12,8 @@ restaurantController.goHome =  (req: Request, res: Response) => {
          res.render("home")      
     } catch (error) {
         console.log('Error, goHome:', error);
-        
+                res.redirect("/admin");
+
     }
 
 };
@@ -21,7 +24,8 @@ restaurantController.getSignup =  (req: Request, res: Response) => {
         res.render('signup')     
     } catch (error) {
         console.log('Error, getSignup:', error);
-        
+                res.redirect("/admin");
+
     }
 
 };
@@ -32,13 +36,13 @@ restaurantController.getLogin =  (req: Request, res: Response) => {
          res.render('login')       
     } catch (error) {
         console.log('Error, getLogin:', error);
-        
+        res.redirect("/admin");
     }
 
 };
 
 
-restaurantController.processSignup = async (req: Request, res: Response) => {
+restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log("processSignup");
         const newMember: MemberInput = req.body;
@@ -47,16 +51,21 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
         const result = await memberService.processSignup(newMember);
 
                 // TODO: SESSIONS
-
-         res.send(result);        
+                req.session.member = result;
+                req.session.save( function () {
+                      res.send(result);   
+                });
+             
     } catch (error) {
         console.log('Error, getSignup:', error);
-        
+                const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG
+        res.send(`  <script>alert("Hi, ${message}") window.location.replace('admin/signup)</script>`); 
+       
     }
 
 };
 
-restaurantController.processLogin =  async(req: Request, res: Response) => {
+restaurantController.processLogin =  async(req: AdminRequest, res: Response) => {
     try {
         console.log("getLogin");
         const input: LoginInput = req.body;
@@ -64,13 +73,49 @@ restaurantController.processLogin =  async(req: Request, res: Response) => {
         const result = await memberService.processLogin(input);
         
                 // TODO: SESSIONS AUTHENTICATION
-         res.send(result);      
+                  req.session.member = result;
+                req.session.save( function () {
+                      res.send(result);   
+                });
+             
+           
     } catch (error) {
         console.log('Error, getSignup:', error);
+        const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG
+        res.send(`  <script>alert("Hi, ${message}") window.location.replace('admin/login)</script>`); 
+       }
+
+};
+
+restaurantController.logout=  async(req: AdminRequest, res: Response) => {
+    try {
+        console.log("logout");
+        req.session.destroy(function () {
+            res.redirect("/admin")
+        })
+           
+    } catch (error) {
+        console.log('Error, logout:', error);
         res.send(error);
+                    res.redirect("/admin")
+
     }
 
 };
 
 
+restaurantController.checkAuthSession =  async(req: AdminRequest, res: Response) => {
+    try {
+        console.log("checkAuthSession");
+            
+        if (req.session?.member) res.send(`  <script>alert("Hi, ${req.session.member.memberNick}")</script>`);
+        else res.send(`<script>alert("${Message.NOT_AUTHENTICATED}")</script>`);
+
+           
+    } catch (error) {
+        console.log('Error, checkAuthSession:', error);
+        res.send(error);
+    }
+
+};
 export default restaurantController;

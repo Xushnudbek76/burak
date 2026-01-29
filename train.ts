@@ -1,6 +1,9 @@
-const reverse = (str: string): string => {
-  return str.split(' ').map( e => e.split('').reverse().join('')).join(" ");
+const getSquare = (arr: number[]): object[] => {
+  let squares = arr.map(e => ({
+    value: e,
+    square: e * e
+  }))
+  return squares;
 }
 
-
-console.log(reverse('Hello MIT'))
+console.log(getSquare([1, 2, 3, 4, 5, 6, 7, 8, 9,]));
