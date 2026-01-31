@@ -64,8 +64,8 @@ class MemberService {
         const result = await this.memberModel.create(input);
         
         result.memberPassword = "";
-
-         return result.toObject();
+        
+         return result;
         
         } catch (err) {
             console.log(err)
