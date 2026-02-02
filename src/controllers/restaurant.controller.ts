@@ -3,7 +3,7 @@ import { T } from "../libs/types/common";
 import  MemberService  from "./../models/Memeber.service";
 import { AdminRequest, LoginInput, MemberInput } from '../libs/types/members';
 import { MemberType } from '../libs/enums/member.enum';
-import { Message } from '../libs/Errors';
+import { HttpCode, Message } from '../libs/Errors';
 import Errors from '../libs/Errors';
 const restaurantController: T = {};
 restaurantController.goHome =  (req: Request, res: Response) => {
@@ -45,7 +45,11 @@ restaurantController.getLogin =  (req: Request, res: Response) => {
 restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log("processSignup");
+        const file = req.file;
+        if (!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
+
         const newMember: MemberInput = req.body;
+        newMember.memberImage = file?.path;
         newMember.memberType = MemberType.RESTAURANT;
         const memberService = new MemberService();
         const result = await memberService.processSignup(newMember);
@@ -53,13 +57,13 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
                 // TODO: SESSIONS
                 req.session.member = result;
                 req.session.save( function () {
-                      res.send(result);   
+                      res.redirect("/admin/product/all");   
                 });
              
     } catch (error) {
         console.log('Error, getSignup:', error);
                 const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG
-        res.send(`  <script>alert("Hi, ${message}") window.location.replace('admin/signup)</script>`); 
+        res.send(`  <script>alert('Hi, ${message}') window.location.replace('admin/signup')</script>`); 
        
     }
 
@@ -75,14 +79,14 @@ restaurantController.processLogin =  async(req: AdminRequest, res: Response) => 
                 // TODO: SESSIONS AUTHENTICATION
                   req.session.member = result;
                 req.session.save( function () {
-                      res.send(result);   
+                    res.redirect("/admin/product/all");
                 });
              
            
     } catch (error) {
         console.log('Error, getSignup:', error);
         const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG
-        res.send(`  <script>alert("Hi, ${message}") window.location.replace('admin/login)</script>`); 
+        res.send(`  <script>alert("Hi, ${message}") window.location.replace('admin/login')</script>`); 
        }
 
 };
@@ -123,7 +127,7 @@ restaurantController.verifyRestaurant = (req: AdminRequest,
     res:  Response, next: NextFunction) =>  {
 
         if(req.session?.member?.memberType === MemberType.RESTAURANT) {
-            console.log(req.member);
+            console.log(req);
             
             req.member = req.session.member;
             console.log(req.member);
@@ -131,7 +135,7 @@ restaurantController.verifyRestaurant = (req: AdminRequest,
             next();
         } else {
         const message = Message.NOT_AUTHENTICATED;
-       res.send(`<script>alert("${message}"); window.location.replace('/admin/login);</script>`)
+       res.send(`<script>alert("${message}"); window.location.replace('/admin/login');</script>`)
     }
     }
 export default restaurantController;
