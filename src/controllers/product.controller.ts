@@ -1,20 +1,29 @@
-import Errors from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 import { T } from "../libs/types/common";
 import {Request, Response} from 'express';
 import ProductService from "../models/Product.service";
 import { AdminRequest } from "../libs/types/members";
+import { ProductInput } from "../libs/types/product";
 
 const productService = new ProductService();
 
 const productController: T =  {};
+ /**
+     * SPA
+     */
 
+
+
+   /**
+     * SSR
+     */
 productController.getAllProducts = async (req: AdminRequest, res: Response) => {
     try {
         console.log("getAllProducts");
        res.render('product');
           
     } catch (error) {
-        console.log('Error, Signup:', error);
+        console.log('Error, getAllProducts:', error);
         if(error instanceof Errors) res.status(error.code).json(error);
         else res.status(Errors.standard.code).json(Errors.standard);
         
@@ -22,16 +31,23 @@ productController.getAllProducts = async (req: AdminRequest, res: Response) => {
 
 };
 
-productController.createNewProduct = async (req: Request, res: Response) => {
+productController.createNewProduct = async (req: AdminRequest, res: Response) => {
     try {
         console.log("createNewProduct");
-       res.send("done")
+        if(!req.files?.length) throw new Errors(HttpCode.INTERNAL_SERVER_ERROR, Message.CREATED_FAILED);
+       
+        const data: ProductInput  = req.body; 
+        data.productImages = req.files.map(ele => {
+         return ele.path.replace(/\\/g, "/");
+        })
+        await productService.createNewProduct(data);
+        res.send(`  <script>alert('Successfully created') window.location.replace('admin/product/all')</script>`)
           
     } catch (error) {
-        console.log('Error, Signup:', error);
-        if(error instanceof Errors) res.status(error.code).json(error);
-        else res.status(Errors.standard.code).json(Errors.standard);
-        
+        console.log('Error, createNewProduct:', error);
+        const message = error instanceof Errors ?  error.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`  <script>alert('${message}') window.location.replace('admin/product/all')</script>`)
+       
     }
 
 };
@@ -41,7 +57,7 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
        
           
     } catch (error) {
-        console.log('Error, Signup:', error);
+        console.log('Error, updateChosenProduct:', error);
         if(error instanceof Errors) res.status(error.code).json(error);
         else res.status(Errors.standard.code).json(Errors.standard);
         
