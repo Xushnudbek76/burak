@@ -7,6 +7,9 @@
         <div>
             <%= member.memberNick%>
         </div>
+        <% products.map((value, key) => {%>
+            <%= value.productName%> - <%= value.productSize%>
+            <% } ) %>
     </div>
 </body>
 <%- include('includes/footer') %>

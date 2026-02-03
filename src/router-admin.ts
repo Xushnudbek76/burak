@@ -8,10 +8,10 @@ import makeUploader from './libs/utils/uploader';
 routerAdmin.get('/', restaurantController.goHome);
 routerAdmin
     .get('/login', restaurantController.getLogin)
-    .post("/login/process", restaurantController.processLogin);
+    .post("/login", restaurantController.processLogin);
 routerAdmin
     .get('/signup', restaurantController.getSignup)
-    .post("/signup/process",  makeUploader('members').single("memberImage"),
+    .post("/signup",  makeUploader('members').single("memberImage"),
      restaurantController.processSignup);
 
 routerAdmin.get('/logout', restaurantController.logout);

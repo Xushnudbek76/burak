@@ -20,7 +20,9 @@ const productController: T =  {};
 productController.getAllProducts = async (req: AdminRequest, res: Response) => {
     try {
         console.log("getAllProducts");
-       res.render('product');
+       // let c  = nimadir;
+        const data = await productService.getAllProducts();
+       res.render('product', {products: data});
           
     } catch (error) {
         console.log('Error, getAllProducts:', error);
