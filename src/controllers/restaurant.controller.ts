@@ -5,6 +5,10 @@ import { AdminRequest, LoginInput, MemberInput } from '../libs/types/members';
 import { MemberType } from '../libs/enums/member.enum';
 import { HttpCode, Message } from '../libs/Errors';
 import Errors from '../libs/Errors';
+
+        const memberService = new MemberService();
+
+
 const restaurantController: T = {};
 restaurantController.goHome =  (req: Request, res: Response) => {
     try {
@@ -51,7 +55,6 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
         const newMember: MemberInput = req.body;
         newMember.memberImage = file?.path.replace(/\\/g, "/");
         newMember.memberType = MemberType.RESTAURANT;
-        const memberService = new MemberService();
         const result = await memberService.processSignup(newMember);
 
                 // TODO: SESSIONS
@@ -103,6 +106,30 @@ restaurantController.logout=  async(req: AdminRequest, res: Response) => {
         res.send(error);
                     res.redirect("/admin")
 
+    }
+
+};
+
+restaurantController.getUsers =  async(req: Request, res: Response) => {
+    try {
+        console.log("getUsers");
+        const result = await memberService.getUsers();
+
+         res.render('users', {users: result});       
+    } catch (error) {
+        console.log('Error, getUsers:', error);
+        res.redirect("/admin/login");
+    }
+
+};
+
+restaurantController.updateChosenUser =  (req: Request, res: Response) => {
+    try {
+        console.log("updateChosenUser");
+         res.render('login')       
+    } catch (error) {
+        console.log('Error, updateChosenUser:', error);
+        res.redirect("/admin/login");
     }
 
 };
