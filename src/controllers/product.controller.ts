@@ -20,9 +20,8 @@ const productController: T =  {};
 productController.getAllProducts = async (req: AdminRequest, res: Response) => {
     try {
         console.log("getAllProducts");
-       // let c  = nimadir;
         const data = await productService.getAllProducts();
-       res.render('product', {products: data});
+       res.render('products', {products: data});
           
     } catch (error) {
         console.log('Error, getAllProducts:', error);
@@ -43,12 +42,12 @@ productController.createNewProduct = async (req: AdminRequest, res: Response) =>
          return ele.path.replace(/\\/g, "/");
         })
         await productService.createNewProduct(data);
-        res.send(`  <script>alert('Successfully created') window.location.replace('admin/product/all')</script>`)
+        res.send(`  <script>alert('Successfully created'); window.location.replace('/admin/product/all')</script>`)
           
     } catch (error) {
         console.log('Error, createNewProduct:', error);
         const message = error instanceof Errors ?  error.message : Message.SOMETHING_WENT_WRONG;
-        res.send(`  <script>alert('${message}') window.location.replace('admin/product/all')</script>`)
+        res.send(`  <script>alert('${message}'); window.location.replace('/admin/product/all')</script>`)
        
     }
 

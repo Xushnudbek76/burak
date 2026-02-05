@@ -1,10 +1,5 @@
-const sumOfNumbers = (arr: any[]):number => {
-return arr.reduce((sum, e)=> {
-  if(typeof e === 'number') {
-    sum += e
-  }
-  return sum;
-},0 ); 
-};
+const toObject = (obj: object) => {
+ return Object.entries(obj);
+}
 
-console.log(sumOfNumbers([10, "10", {son: 10}, true, 35]));
+console.log(toObject({a: 10, b: 20}));
