@@ -66,7 +66,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
     } catch (error) {
         console.log('Error, getSignup:', error);
                 const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG
-        res.send(`  <script>alert('Hi, ${message}') window.location.replace('admin/signup')</script>`); 
+        res.send(`  <script>alert('Hi, ${message}'); window.location.replace('/admin/signup')</script>`); 
        
     }
 
