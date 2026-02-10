@@ -52,6 +52,7 @@ productController.createNewProduct = async (req: AdminRequest, res: Response) =>
     }
 
 };
+
 productController.updateChosenProduct = async (req: Request, res: Response) => {
     try {
         console.log("updateChosenProduct");

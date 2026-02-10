@@ -13,9 +13,10 @@ memberController.signup = async (req: Request, res: Response) => {
     try {
         console.log("processSignup");
         const input: MemberInput = req.body,
+        
          result: Member = await memberService.signup(input);
         // TODO: TOKENS AUTHENTICATION
-
+          console.log(result)
          res.json({member: result});        
     } catch (error) {
         console.log('Error, Signup:', error);
