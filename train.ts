@@ -1,10 +1,28 @@
-
-const calculate = (str: string) => {
-   return str.split("+")
-   .reduce((sum, e) => sum + Number(e), 0);
+ const missingNumber = (nums: number[]): number => {
+    const n = nums.length;
+    const e = (n * (n + 1)) / 2;
+    const s = nums.reduce((a, b) => a + b, 0);
+    return e - s;
 }
 
-console.log(calculate('1+2+10+6'));
+console.log(missingNumber([3, 0, 1])); 
+
+
+
+
+
+
+
+
+
+
+
+// const calculate = (str: string) => {
+//    return str.split("+")
+//    .reduce((sum, e) => sum + Number(e), 0);
+// }
+
+// console.log(calculate('1+2+10+6'));
 
 
 
