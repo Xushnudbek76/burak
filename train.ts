@@ -1,11 +1,27 @@
- const missingNumber = (nums: number[]): number => {
-    const n = nums.length;
-    const e = (n * (n + 1)) / 2;
-    const s = nums.reduce((a, b) => a + b, 0);
-    return e - s;
-}
 
-console.log(missingNumber([3, 0, 1])); 
+const mergeAndSort = (arr1 : number[], arr2: number[]): number[] => {
+let all = arr1.concat(arr2);
+return all.sort((a, b) => b - a);
+}
+console.log(mergeAndSort([2, 3, 5, 43, 2, 5], [6, 2, 87, 5, 9]));
+
+
+
+
+
+
+
+
+
+
+//  const missingNumber = (nums: number[]): number => {
+//     const n = nums.length;
+//     const e = (n * (n + 1)) / 2;
+//     const s = nums.reduce((a, b) => a + b, 0);
+//     return e - s;
+// }
+
+// console.log(missingNumber([3, 0, 1])); 
 
 
 
