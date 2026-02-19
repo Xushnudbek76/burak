@@ -1,13 +1,43 @@
+const frequencyOfLetters = (str: string): object => {
+const result: {[key: string]: number} = {};
 
-
-const sumOfOdds = (num: number): number => {
-    let odd = 0;
-   for( let i = 1; i < num; i++){
-    if(i % 2 !== 0) odd++
-   };
-   return odd;
+for( const e of str) {
+    result[e] = (result[e] || 0) + 1;
 }
-console.log(sumOfOdds(11));
+return result
+};
+
+console.log(frequencyOfLetters('uzbekistan'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const sumOfOdds = (num: number): number => {
+//     let odd = 0;
+//    for( let i = 1; i < num; i++){
+//     if(i % 2 !== 0) odd++
+//    };
+//    return odd;
+// }
+// console.log(sumOfOdds(11));
 
 
 
