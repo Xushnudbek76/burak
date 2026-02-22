@@ -1,13 +1,47 @@
-const frequencyOfLetters = (str: string): object => {
-const result: {[key: string]: number} = {};
-
-for( const e of str) {
-    result[e] = (result[e] || 0) + 1;
+const chunkOfArrays = (arr: number[], chunk: number ): any => {
+    let result = [];
+    for( let i = 0; i < arr.length; i += chunk) {
+        result.push(arr.slice(i, i + chunk))
+    }
+    return result
 }
-return result
-};
+console.log(chunkOfArrays([3,5,2,6,4,3,1,6,8,4,7,4], 3));
 
-console.log(frequencyOfLetters('uzbekistan'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const frequencyOfLetters = (str: string): object => {
+// const result: {[key: string]: number} = {};
+
+// for( const e of str) {
+//     result[e] = (result[e] || 0) + 1;
+// }
+// return result
+// };
+
+// console.log(frequencyOfLetters('uzbekistan'));
 
 
 
