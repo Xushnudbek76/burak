@@ -1,11 +1,61 @@
-const chunkOfArrays = (arr: number[], chunk: number ): any => {
-    let result = [];
-    for( let i = 0; i < arr.length; i += chunk) {
-        result.push(arr.slice(i, i + chunk))
+
+const countOccurrences = (obj: Record<string, any>, str: string): number => {
+    let count = 0;
+
+    for (let key in obj) {
+      if (key === str) {
+        count++;
+      }
+
+
+      if (typeof obj[key] === 'object') {
+        count += countOccurrences(obj[key], str)
+      }
     }
-    return result
+
+ return count;
 }
-console.log(chunkOfArrays([3,5,2,6,4,3,1,6,8,4,7,4], 3));
+
+console.log(countOccurrences( {
+  model: 'Bugatti',
+  steer: {
+    model: 'HANKOOK',
+    size: 30
+  }
+}, 'model'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const chunkOfArrays = (arr: number[], chunk: number ): number[][] => {
+//     let result = [];
+//     for( let i = 0; i < arr.length; i += chunk) {
+//         console.log(i);
+//         result.push(arr.slice(i, i + chunk))
+//     }
+//     return result
+// }
+// console.log(chunkOfArrays([3,5,2,6,4,3,1,6,8,4,7,4], 3));
 
 
 
