@@ -1,28 +1,77 @@
+const findIntersection = (arr: number[], arr2: number[]): number[] => {
+  let set1 = new Set(arr);
+  let set2 = new Set(arr2);
+  let num = [];
 
-const countOccurrences = (obj: Record<string, any>, str: string): number => {
-    let count = 0;
-
-    for (let key in obj) {
-      if (key === str) {
-        count++;
-      }
-
-
-      if (typeof obj[key] === 'object') {
-        count += countOccurrences(obj[key], str)
-      }
+  for( let e of set1) {
+    if(set2.has(e)) {
+      num.push(e);
     }
-
- return count;
+  }
+  return num;
 }
 
-console.log(countOccurrences( {
-  model: 'Bugatti',
-  steer: {
-    model: 'HANKOOK',
-    size: 30
-  }
-}, 'model'));
+console.log(findIntersection([2, 4, 5, 3, 5, 6,], [2, 4, 8, 5, 2, 6,]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const countOccurrences = (obj: Record<string, any>, str: string): number => {
+//     let count = 0;
+
+//     for (let key in obj) {
+//       if (key === str) {
+//         count++;
+//       }
+
+
+//       if (typeof obj[key] === 'object') {
+//         count += countOccurrences(obj[key], str)
+//       }
+//     }
+
+//  return count;
+// }
+
+// console.log(countOccurrences( {
+//   model: 'Bugatti',
+//   steer: {
+//     model: 'HANKOOK',
+//     size: 30
+//   }
+// }, 'model'));
 
 
 
