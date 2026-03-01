@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from 'express';
 import { T } from "../libs/types/common";
 import MemberService from '../models/Memeber.service';
-import { ExtendedRequest, LoginInput, Member, MemberInput } from '../libs/types/members';
+import { ExtendedRequest, LoginInput, Member, MemberInput, MemberUpdateInput } from '../libs/types/members';
 import Errors, { HttpCode, Message } from '../libs/Errors';
 import AuthService from '../models/Auth.service';
 import { AUTH_TIMER } from '../libs/config';
@@ -11,6 +11,24 @@ import { AUTH_TIMER } from '../libs/config';
         const authService = new AuthService();
 
 const memberController: T = {};
+
+
+
+
+memberController.getRestaurant = async (req: Request, res: Response) => {
+    try {
+        console.log("getRestaurant");
+        const result = await memberService.getRestaurant();
+
+        res.status(HttpCode.OK).json(result);
+    } catch (error) {
+        console.log('Error, getRestaurant:', error);
+        if(error instanceof Errors) res.status(error.code).json(error);
+        else res.status(Errors.standard.code).json(Errors.standard);
+        
+    }
+}
+
 
 memberController.signup = async (req: Request, res: Response) => {
     try {
@@ -78,6 +96,34 @@ memberController.getMemberDetail = async (req: ExtendedRequest, res: Response ) 
                 console.log('Error, getMemberDetail:', error);
         if(error instanceof Errors) res.status(error.code).json(error);
         else res.status(Errors.standard.code).json(Errors.standard);   
+    }
+}
+
+
+memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
+    try {
+        console.log("updateMember");
+        const input: MemberUpdateInput = req.body;
+        if(req.file) input.memberImage = req.file.path.replace(/\\/, "/");
+        const result = await memberService.updateMember(req.member, input);
+        res.status(HttpCode.OK).json(result);
+    } catch (error) {
+                        console.log('Error, updateMember:', error);
+        if(error instanceof Errors) res.status(error.code).json(error);
+        else res.status(Errors.standard.code).json(Errors.standard);  
+    }
+}
+
+memberController.getTopUsers = async (req: Request, res: Response) => {
+    try {
+            console.log("getTopUsers");
+        const result = await memberService.getTopUsers();
+
+        res.status(HttpCode.OK).json(result);
+    } catch (error) {
+                              console.log('Error, getTopUsers:', error);
+        if(error instanceof Errors) res.status(error.code).json(error);
+        else res.status(Errors.standard.code).json(Errors.standard);    
     }
 }
 

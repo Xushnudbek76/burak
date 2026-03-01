@@ -1,17 +1,43 @@
-const findIntersection = (arr: number[], arr2: number[]): number[] => {
-  let set1 = new Set(arr);
-  let set2 = new Set(arr2);
-  let num = [];
+const sumOfEven = (arr: number[]): number =>{
+  let sum  = 0;
 
-  for( let e of set1) {
-    if(set2.has(e)) {
-      num.push(e);
+  for(let e of arr) {
+    if (e % 2 === 0) {
+      sum += e
     }
   }
-  return num;
+   return sum
 }
 
-console.log(findIntersection([2, 4, 5, 3, 5, 6,], [2, 4, 8, 5, 2, 6,]));
+
+console.log(sumOfEven([2, 3, 4, 5, 6, 7, 8,]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const findIntersection = (arr: number[], arr2: number[]): number[] => {
+//   let set1 = new Set(arr);
+//   let set2 = new Set(arr2);
+//   let num = [];
+
+//   for( let e of set1) {
+//     if(set2.has(e)) {
+//       num.push(e);
+//     }
+//   }
+//   return num;
+// }
+
+// console.log(findIntersection([2, 4, 5, 3, 5, 6,], [2, 4, 8, 5, 2, 6,]));
 
 
 
