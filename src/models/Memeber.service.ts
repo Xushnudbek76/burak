@@ -5,6 +5,8 @@ import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/type
 import MemberModel from "../schema/Member.model";
 import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
+import { Product, ProductInquiry } from "../libs/types/product";
+import { ProductStatus } from "../libs/enums/product.enums";
 
 class MemberService {
     private readonly memberModel;
@@ -90,6 +92,10 @@ class MemberService {
         if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
         return result;
     }
+
+
+
+
          /**
      * SSR
      */

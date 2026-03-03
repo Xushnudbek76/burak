@@ -1,16 +1,32 @@
-const sumOfEven = (arr: number[]): number =>{
-  let sum  = 0;
-
-  for(let e of arr) {
-    if (e % 2 === 0) {
-      sum += e
-    }
-  }
-   return sum
+const sortByAge = (arr: { age: number }[]) => {
+  return arr.sort((a: { age: number }, b: { age: number }) => a.age - b.age);
 }
+console.log(sortByAge([{age:23}, {age:21}, {age:13}]));
 
 
-console.log(sumOfEven([2, 3, 4, 5, 6, 7, 8,]));
+
+
+
+
+
+
+
+
+
+
+// const sumOfEven = (arr: number[]): number =>{
+//   let sum  = 0;
+
+//   for(let e of arr) {
+//     if (e % 2 === 0) {
+//       sum += e
+//     }
+//   }
+//    return sum
+// }
+
+
+// console.log(sumOfEven([2, 3, 4, 5, 6, 7, 8,]));
 
 
 
