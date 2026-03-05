@@ -7,6 +7,7 @@ import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 import { Product, ProductInquiry } from "../libs/types/product";
 import { ProductStatus } from "../libs/enums/product.enums";
+import { OrderStatus } from "../libs/enums/order.enum";
 
 class MemberService {
     private readonly memberModel;
@@ -94,7 +95,21 @@ class MemberService {
     }
 
 
+    public async addUserPoint(member: Member, point: number) {
+        const memberId = shapeIntoMongooseObjectId(member._id);
+        return await this.memberModel
+        .findOneAndUpdate(
+            {
+                _id: memberId,
+                memberType: MemberType.USER,
+                memberStatus: MemberStatus.ACTIVE,
+            },
+            { $inc: {memberPoints: point}},
+            {new: true}
+        ).exec();
 
+
+    }
 
          /**
      * SSR

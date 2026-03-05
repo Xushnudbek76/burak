@@ -1,7 +1,14 @@
-const sortByAge = (arr: { age: number }[]) => {
-  return arr.sort((a: { age: number }, b: { age: number }) => a.age - b.age);
+const randomBetween = (start: number, end: number): number => {
+      return Math.floor(Math.random() * (end - start)) + start   
 }
-console.log(sortByAge([{age:23}, {age:21}, {age:13}]));
+
+      console.log(randomBetween(30, 50));
+
+
+// const sortByAge = (arr: { age: number }[]) => {
+//   return arr.sort((a: { age: number }, b: { age: number }) => a.age - b.age);
+// }
+// console.log(sortByAge([{age:23}, {age:21}, {age:13}]));
 
 
 

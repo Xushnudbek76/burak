@@ -32,7 +32,7 @@ class ProductService {
         }
 
         const sort: T = 
-          inquiry.order ===  "productPage"
+          inquiry.order ===  "productPrice"
           ? { [inquiry.order]: 1 }
           : { [inquiry.order]: -1 };
 
