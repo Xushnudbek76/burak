@@ -33,6 +33,6 @@ router.get("/product/:id", memberController.retrieveAuth, productController.getP
 // Order
 
 router.post("/order/create", memberController.verifyAuth, orderController.createOrder);
-router.post("/order/all", memberController.verifyAuth, orderController.getMyOrders)
+router.get("/order/all", memberController.verifyAuth, orderController.getMyOrders)
 router.post("/order/update", memberController.verifyAuth, orderController.updateOrder)
 export default router;
