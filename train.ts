@@ -1,8 +1,14 @@
-const randomBetween = (start: number, end: number): number => {
-      return Math.floor(Math.random() * (end - start)) + start   
+const celToFer  = (c:number): number => {
+      return ((c * 9/5) + 32)
 }
+ 
+console.log(celToFer(80))
 
-      console.log(randomBetween(30, 50));
+// const randomBetween = (start: number, end: number): number => {
+//       return Math.floor(Math.random() * (end - start)) + start   
+// }
+
+//       console.log(randomBetween(30, 50));
 
 
 // const sortByAge = (arr: { age: number }[]) => {
