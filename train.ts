@@ -1,8 +1,16 @@
-const celToFer  = (c:number): number => {
-      return ((c * 9/5) + 32)
+const changeNumberInArray = (num: number, arr: number[]): number[] => {
+     arr[num] = num;
+      return arr;
 }
+
+console.log(changeNumberInArray(5,[1, 1, 1, 1, 1, 1, 1,]));
+
+
+// const celToFer  = (c:number): number => {
+//       return ((c * 9/5) + 32)
+// }
  
-console.log(celToFer(80))
+// console.log(celToFer(80))
 
 // const randomBetween = (start: number, end: number): number => {
 //       return Math.floor(Math.random() * (end - start)) + start   
