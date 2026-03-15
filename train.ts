@@ -1,9 +1,34 @@
-const changeNumberInArray = (num: number, arr: number[]): number[] => {
-     arr[num] = num;
-      return arr;
+const removeDuplicate = (str: string): string => {
+      return [...new Set(str)].join('');
 }
 
-console.log(changeNumberInArray(5,[1, 1, 1, 1, 1, 1, 1,]));
+
+
+
+
+console.log(removeDuplicate('hello'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const changeNumberInArray = (num: number, arr: number[]): number[] => {
+//       console.log(arr[num])
+//      arr[num] = num;
+     
+//       return arr;
+// }
+
+// console.log(changeNumberInArray(5,[1, 1, 1, 1, 1, 1, 1,]));
 
 
 // const celToFer  = (c:number): number => {
