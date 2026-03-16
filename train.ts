@@ -1,12 +1,30 @@
-const removeDuplicate = (str: string): string => {
-      return [...new Set(str)].join('');
-}
+const capitalizeWords = (str: string): string => {
+  return str
+    .split(" ")
+    .map((word) => {
+      if (word.length <= 2) {
+        return word;
+      }
+      return word[0].toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+};
+
+console.log(capitalizeWords('salom al nima ga'))
 
 
 
 
 
-console.log(removeDuplicate('hello'))
+// const removeDuplicate = (str: string): string => {
+//       return [...new Set(str)].join('');
+// }
+
+
+
+
+
+// console.log(removeDuplicate('hello'));
 
 
 

@@ -2,17 +2,17 @@
 console.log("Products frontend javascript file");
 
 $(function () {
-    $(".product-collection").on("change", () => {
-        const selected = $(".product-collection").val();
-        if (selected === "DRINK") {
-            $(".product-volume").show();
-            $(".product-collection").hide();
-        } else {
-            $(".product-collection").show();
-            $(".product-volume").hide();
+$(".product-collection").on("change", () => {
+    const selected = $(".product-collection").val();
 
-        }
-    });
+    if (selected === "DRINK") {
+        $("#product-volume").show();        // show drink
+        $("#product-collection").hide();    // hide dish size
+    } else {
+        $("#product-collection").show();    // show dish size
+        $("#product-volume").hide();        // hide drink
+    }
+});
     $("#process-btn").on("click", () => {
         $(".dish-container").slideToggle(500);
         $("#process-btn").css("display", "none");
@@ -25,13 +25,14 @@ $(function () {
 
     $(".new-product-status").on("change", async function (e) {
         const id = e.target.id;
-        const productStatus = $(`#${id}`).val();
-
+        // const productStatus = $(`#${id}`).val();
+        const productStatus = $(this).val();
         try {
             const response = await axios.post(`/admin/product/${id}`, {productStatus: productStatus}),
              result = response.data;
             if (result.data) {
-                $(".new-product-status").blur();
+                $(this).blur();
+                // $(".new-product-status").blur();
             } else alert("Product update failed!");
         } catch (error) {
             console.log(error);

@@ -103,9 +103,8 @@ class ProductService {
       }
     }
     public async updateChosenProduct(id: string , input: ProductUpdateInput): Promise<Product> {
-    // id = shapeIntoMongooseObjectId(id);
 
-    const result = await this.productModel.findOneAndUpdate({_id:id} , input, {new: true});
+    const result = await this.productModel.findOneAndUpdate({_id:id} , input, {new: true, runValidators: true});
     if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.UPDATE_FAILED);
     return result;
   }
