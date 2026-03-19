@@ -1,16 +1,45 @@
-const capitalizeWords = (str: string): string => {
-  return str
-    .split(" ")
-    .map((word) => {
-      if (word.length <= 2) {
-        return word;
-      }
-      return word[0].toUpperCase() + word.slice(1);
-    })
-    .join(" ");
-};
+const toSnakeCase = (str: string): string => {
+   return str.split(" ").join("_");
+}
+console.log(toSnakeCase("Hello from Uzbekistan"));
 
-console.log(capitalizeWords('salom al nima ga'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const capitalizeWords = (str: string): string => {
+//   return str
+//     .split(" ")
+//     .map((word) => {
+//       if (word.length <= 2) {
+//         return word;
+//       }
+//       return word[0].toUpperCase() + word.slice(1);
+//     })
+//     .join(" ");
+// };
+
+// console.log(capitalizeWords('salom al nima ga'))
 
 
 
