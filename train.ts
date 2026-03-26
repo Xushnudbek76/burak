@@ -1,7 +1,39 @@
-const toSnakeCase = (str: string): string => {
-   return str.split(" ").join("_");
+const findDisappearedNumbers = (arr: number[]): number[] => {
+   const result: number[] = [];
+  const max = Math.max(...arr);  
+
+  for (let i = 1; i <= max; i++) {
+    if (!arr.includes(i)) {
+      result.push(i);
+    }
+  }
+
+  return result;
 }
-console.log(toSnakeCase("Hello from Uzbekistan"));
+
+console.log(findDisappearedNumbers([1, 3, 4, 7]) )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const toSnakeCase = (str: string): string => {
+//    return str.split(" ").join("_");
+// }
+// console.log(toSnakeCase("Hello from Uzbekistan"));
 
 
 
