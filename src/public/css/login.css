@@ -141,3 +141,21 @@
     background-position: 0% 50%;
   }
 }
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+  .login-container .login-frame {
+    width: 98vw;
+    padding: 10px;
+  }
+  .login-container .login-input-container {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-container .login-frame {
+    width: 100vw;
+    padding: 2px;
+  }
+}

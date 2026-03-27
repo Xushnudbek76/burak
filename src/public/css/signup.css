@@ -189,3 +189,32 @@
     background-position: 0% 50%;
   }
 }
+
+@media (max-width: 600px) {
+  .signup-container .signup-frame {
+    width: 98vw;
+    padding: 10px;
+  }
+  .signup-container .signup-frame .sign-input-frame {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .signup-container .sign-input-frame .sign-up-frame {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .signup-container .media-frame {
+    flex-direction: column;
+    height: auto;
+  }
+  .signup-container .media-frame .upload-img-frame {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 400px) {
+  .signup-container .signup-frame {
+    width: 100vw;
+    padding: 2px;
+  }
+}

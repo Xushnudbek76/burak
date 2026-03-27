@@ -108,3 +108,54 @@ table th {
   text-align: center;
   vertical-align: middle;
 }
+
+@media (max-width: 1200px) {
+  .users-container .users-frame .board {
+    width: 95vw;
+    margin-top: 60px;
+  }
+}
+@media (max-width: 900px) {
+  .users-container .users-frame .board {
+    width: 99vw;
+    margin-top: 40px;
+  }
+  .users-container .users-frame {
+    padding-bottom: 30px;
+  }
+}
+@media (max-width: 600px) {
+  .users-container .users-frame .board {
+    width: 100vw;
+    margin-top: 20px;
+  }
+  .users-container .users-frame {
+    padding-bottom: 10px;
+  }
+  .users-container .navigation-menu {
+    font-size: 22px;
+    position: static;
+    padding: 0.5rem 0;
+  }
+  .users-container .nav-item {
+    font-size: 1rem;
+    margin: 0 0.5rem;
+  }
+  .users-container .board .dishes-table,
+  .users-container .board .user-table {
+    width: 100vw;
+    font-size: 0.95rem;
+  }
+  .users-container .header-name {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 400px) {
+  .users-container .users-frame .board {
+    width: 100vw;
+    margin-top: 10px;
+  }
+  .users-container .navigation-menu {
+    font-size: 16px;
+  }
+}
