@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: true }));
 app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin: true
+    origin: 'https://burak-xushnudbek-react.vercel.app'
 }));
 app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
