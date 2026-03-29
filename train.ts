@@ -1,17 +1,23 @@
-const findDisappearedNumbers = (arr: number[]): number[] => {
-   const result: number[] = [];
-  const max = Math.max(...arr);  
-
-  for (let i = 1; i <= max; i++) {
-    if (!arr.includes(i)) {
-      result.push(i);
-    }
-  }
-
-  return result;
+const wait = (string: string): any => {
+ console.log(string);
 }
 
-console.log(findDisappearedNumbers([1, 3, 4, 7]) )
+setTimeout(() => wait("hello world"), 3000);
+
+// const findDisappearedNumbers = (arr: number[]): number[] => {
+//    const result: number[] = [];
+//   const max = Math.max(...arr);
+
+//   for (let i = 1; i <= max; i++) {
+//     if (!arr.includes(i)) {
+//       result.push(i);
+//     }
+//   }
+
+//   return result;
+// }
+
+// console.log(findDisappearedNumbers([1, 3, 4, 7]) );
 
 
 
