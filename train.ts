@@ -1,8 +1,20 @@
-const wait = (string: string): any => {
- console.log(string);
+const reduceNestedArray = (arr: any): number =>{
+    return arr.reduce((sum:number, item: number) => {
+        if(Array.isArray(item)){
+        return sum + reduceNestedArray(item)
+        }
+        return sum + item
+    }, 0);
 }
+console.log(reduceNestedArray([1, [2, 3], [4, [5, 6]]]))
 
-setTimeout(() => wait("hello world"), 3000);
+
+
+// const wait = (string: string): any => {
+//  console.log(string);
+// }
+
+// setTimeout(() => wait("hello world"), 3000);
 
 // const findDisappearedNumbers = (arr: number[]): number[] => {
 //    const result: number[] = [];
