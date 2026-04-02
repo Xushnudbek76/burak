@@ -1,12 +1,39 @@
-const reduceNestedArray = (arr: any): number =>{
-    return arr.reduce((sum:number, item: number) => {
-        if(Array.isArray(item)){
-        return sum + reduceNestedArray(item)
-        }
-        return sum + item
-    }, 0);
-}
-console.log(reduceNestedArray([1, [2, 3], [4, [5, 6]]]))
+let count = 0;
+const printNumbers = setInterval((): void => {
+    count++;
+    for(let i = 1; i <= 5; i++) {
+        console.log(i);
+    }
+    if(count === 5) clearInterval(printNumbers);
+}, 1000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const reduceNestedArray = (arr: any): number =>{
+//     return arr.reduce((sum:number, item: number) => {
+//         if(Array.isArray(item)){
+//         return sum + reduceNestedArray(item)
+//         }
+//         return sum + item
+//     }, 0);
+// }
+// console.log(reduceNestedArray([1, [2, 3], [4, [5, 6]]]))
 
 
 
